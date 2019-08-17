@@ -15,7 +15,7 @@
 
 
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from iris import iris_classifier
 from pprint import pprint
 import numpy as np
@@ -35,6 +35,10 @@ species = {
 '2': 'I. virginica'
 }
 
+#static website para definir un home en lugar de lo del error 404 al inicio
+@app.route('/')
+def index():
+    return render_template("index.html")
 
 # API MAIN STRUCTURE:
 @app.route('/api/' + version, methods=['GET'])#@app.route('/api/' + version)
